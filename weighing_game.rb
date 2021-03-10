@@ -1,5 +1,4 @@
 require "selenium-webdriver"
-Selenium::WebDriver::Chrome::Service.driver_path = "C:/WebDriver/bin/chromedriver.exe"
 
 driver = Selenium::WebDriver.for :chrome
 driver.get 'http://ec2-54-208-152-154.compute-1.amazonaws.com/'
@@ -47,4 +46,3 @@ elsif result[-1] == '>'
     compare('3', '4', '5')
 end
 sleep 3
-
