@@ -18,12 +18,12 @@ define_method(:compare) do |bar0, bar1, bar2|
     driver.find_element(id: "left_0").send_keys bar0
     driver.find_element(id: "right_0").send_keys bar1
     driver.find_element(id: "weigh").click
-    result = driver.find_element(xpath: '/html/body/div/div/div[1]/div[2]').text
-    if result[-1] == '='
+    weighing_result = driver.find_element(xpath: '/html/body/div/div/div[1]/div[2]').text
+    if weighing_result[-1] == '='
         report(bar2)
-    elsif result[-1] == '<'
+    elsif weighing_result[-1] == '<'
         report(bar0)
-    elsif result[-1] == '>'
+    elsif weighing_result[-1] == '>'
         report(bar1)
     end
 end
@@ -34,15 +34,15 @@ end
 
 # Weighs and compares the groups, determining which group of three contains the false bar.
 driver.find_element(id: 'weigh').click
-result = driver.find_element(xpath: '/html/body/div/div/div[1]/div[2]').text
+weighing_result = driver.find_element(xpath: '/html/body/div/div/div[1]/div[2]').text
 sleep 1
 
 # Runs the method to get the specific false bar on the appropriate group of three bars, and weighings and alert text.
-if result[-1] == '='
+if weighing_result[-1] == '='
     compare('6', '7', '8')
-elsif result[-1] == '<'
+elsif weighing_result[-1] == '<'
     compare('0', '1', '2')
-elsif result[-1] == '>'
+elsif weighing_result[-1] == '>'
     compare('3', '4', '5')
 end
 sleep 3
